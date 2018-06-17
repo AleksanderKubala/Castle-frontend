@@ -1,0 +1,199 @@
+<div class="grid-container">
+  <div class="relative-container half-short">
+    <div class="margin-left-30 margin-top-30">
+      <label>City Garrison:</label>
+      <div *ngIf="city">
+        <ul class="list-inline">
+          <li>
+            <div>
+              <img class="small-image-60" src="http://127.0.0.1:8887/icons/archer.png">
+              <label>{{maxDismiss[archer.name]}}</label>
+              <label> / </label>
+              <input id="archerDismiss" [(ngModel)]="archerToDismiss" type="number" min="0"
+                     max="{{maxDismiss[archer.name]}}" value="0">
+              <label for="archerDismiss"></label>
+              <a class="btn colored-button" [class.disabled]="maxDismiss[archer.name] === 0"
+                 (click)="dismiss(archer, archerToDismiss)"><span style="color: #ffdf81">Dismiss</span></a>
+            </div>
+            <div>
+              <img class="small-image-60" src="http://127.0.0.1:8887/icons/pikeman.png">
+              <label>{{maxDismiss[pikeman.name]}}</label>
+              <label> / </label>
+              <input id="pikemanDismiss" [(ngModel)]="pikemanToDismiss" type="number" min="0"
+                     max="{{maxDismiss[pikeman.name]}}" value="0">
+              <label for="pikemanDismiss"></label>
+              <a class="btn colored-button" [class.disabled]="maxDismiss[pikeman.name] === 0"
+                 (click)="dismiss(pikeman, pikemanToDismiss)"><span style="color: #ffdf81">Dismiss</span></a>
+            </div>
+            <div>
+              <img class="small-image-60" src="http://127.0.0.1:8887/icons/cavalry.png">
+              <label>{{maxDismiss[cavalry.name]}}</label>
+              <label> / </label>
+              <input id="cavalryDismiss" [(ngModel)]="cavalryToDismiss" type="number" min="0"
+                     max="{{maxDismiss[cavalry.name]}}" value="0">
+              <label for="cavalryDismiss"></label>
+              <a class="btn colored-button" [class.disabled]="maxDismiss[cavalry.name] === 0"
+                 (click)="dismiss(cavalry, cavalryToDismiss)"><span style="color: #ffdf81">Dismiss</span></a>
+            </div>
+            <div>
+              <img class="small-image-60" src="http://127.0.0.1:8887/icons/settler.png">
+              <label>{{maxDismiss[settler.name]}}</label>
+              <label> / </label>
+              <input id="settlerDismiss" [(ngModel)]="settlerToDismiss" type="number" min="0"
+                     max="{{maxDismiss[settler.name]}}" value="0">
+              <label for="settlerDismiss"></label>
+              <a class="btn colored-button" [class.disabled]="maxDismiss[settler.name] === 0"
+                 (click)="dismiss(settler, settlerToDismiss)"><span style="color: #ffdf81">Dismiss</span></a>
+            </div>
+          </li>
+        </ul>
+        <div>
+          <label>Resources:</label>
+          <div>
+            <ul>
+              <li class="display-inline" *ngFor="let res of imageService.getResources()">
+                <img class="small-image-20" src="{{res.image}}">
+                <label class="small-font margin-right-5">{{city.getStorageByResource(res)}}/{{city.getProductionByResource(res)}}</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="relative-container full-scale">
+    <input class="pull-right small-image-60 margin-all-5" type="image" src="http://127.0.0.1:8887/icons/city.png"
+           (click)="displayCity()">
+  </div>
+  <div class="relative-container full-scale margin-top--150">
+    <div class="margin-left-30">
+      <label>Recruitment:</label>
+      <div class="relative-container full-scale">
+        <ul>
+          <li>
+            <div *ngIf="city" class="display-inline">
+              <img class="small-image-60" src="http://127.0.0.1:8887/icons/archer.png">
+              <input id="archerRecruit" [(ngModel)]="archerToRecruit" type="number" min="0"
+                     max="{{maxRecruit[archer.name]}}" value="0">
+              <label for="archerRecruit"></label>
+              <label>/{{maxRecruit[archer.name]}}</label>
+              <a class="btn colored-button" [class.disabled]="city.hasArchery === false"
+                 (click)="recruit(archer, archerToRecruit)"><span
+                style="color: #ffdf81">Recruit</span></a>
+              <ng-container *ngFor="let req of archer.getRequirements()">
+                <img class="small-image-20" src="{{req.resource.image}}"/>
+                <label class="small-font margin-right-5">{{req.quantity}}</label>
+              </ng-container>
+              <label class="small-font">/</label>
+              <ng-container *ngFor="let prod of archer.getProduction()">
+                <img class="small-image-20" src="{{prod.resource.image}}"/>
+                <label class="small-font margin-right-5">{{prod.quantity}}</label>
+              </ng-container>
+            </div>
+          </li>
+          <li>
+            <div *ngIf="city" class="display-inline">
+              <img class="small-image-60" src="http://127.0.0.1:8887/icons/pikeman.png">
+              <input id="pikemanRecruit" [(ngModel)]="pikemanToRecruit" type="number" min="0"
+                     max="{{maxRecruit[pikeman.name]}}" value="0">
+              <label for="pikemanRecruit"></label>
+              <label>/{{maxRecruit[pikeman.name]}}</label>
+              <a class="btn colored-button" [class.disabled]="city.hasBarracks === false"
+                 (click)="recruit(pikeman, pikemanToRecruit)"><span
+                style="color: #ffdf81">Recruit</span></a>
+              <ng-container *ngFor="let req of pikeman.getRequirements()">
+                <img class="small-image-20" src="{{req.resource.image}}"/>
+                <label class="small-font margin-right-5">{{req.quantity}}</label>
+              </ng-container>
+              <label class="small-font">/</label>
+              <ng-container *ngFor="let prod of pikeman.getProduction()">
+                <img class="small-image-20" src="{{prod.resource.image}}"/>
+                <label class="small-font margin-right-5">{{prod.quantity}}</label>
+              </ng-container>
+            </div>
+          </li>
+          <li>
+            <div *ngIf="city" class="display-inline">
+              <img class="small-image-60" src="http://127.0.0.1:8887/icons/cavalry.png">
+              <input id="cavalryRecruit" [(ngModel)]="cavalryToRecruit" type="number" min="0"
+                     max="{{maxRecruit[cavalry.name]}}" value="0">
+              <label for="cavalryRecruit"></label>
+              <label>/{{maxRecruit[cavalry.name]}}</label>
+              <a class="btn colored-button" [class.disabled]="city.hasStables === false"
+                 (click)="recruit(cavalry, cavalryToRecruit)"><span
+                style="color: #ffdf81">Recruit</span></a>
+              <ng-container *ngFor="let req of cavalry.getRequirements()">
+                <img class="small-image-20" src="{{req.resource.image}}"/>
+                <label class="small-font margin-right-5">{{req.quantity}}</label>
+              </ng-container>
+              <label class="small-font">/</label>
+              <ng-container *ngFor="let prod of cavalry.getProduction()">
+                <img class="small-image-20" src="{{prod.resource.image}}"/>
+                <label class="small-font margin-right-5">{{prod.quantity}}</label>
+              </ng-container>
+            </div>
+          </li>
+          <li>
+            <div *ngIf="city" class="display-inline">
+              <img class="small-image-60" src="http://127.0.0.1:8887/icons/settler.png">
+              <input id="settlerRecruit" [(ngModel)]="settlerToRecruit" type="number" min="0"
+                     max="{{maxRecruit[settler.name]}}" value="0">
+              <label for="settlerRecruit"></label>
+              <label>/{{maxRecruit[settler.name]}}</label>
+              <a class="btn colored-button" [class.disabled]="city.hasMainBuilding === false"
+                 (click)="recruit(settler, settlerToRecruit)"><span
+                style="color: #ffdf81">Recruit</span></a>
+              <ng-container *ngFor="let req of settler.getRequirements()">
+                <img class="small-image-20" src="{{req.resource.image}}"/>
+                <label class="small-font margin-right-5">{{req.quantity}}</label>
+              </ng-container>
+              <label class="small-font">/</label>
+              <ng-container *ngFor="let prod of settler.getProduction()">
+                <img class="small-image-20" src="{{prod.resource.image}}"/>
+                <label class="small-font margin-right-5">{{prod.quantity}}</label>
+              </ng-container>
+            </div>
+          </li>
+        </ul>
+        <!--
+        <ul>
+          <li *ngFor="let troop of imageService.getUnits()">
+            <div class="display-inline">
+              <img class="small-image-60" src="{{troop.image}}">
+              <input id="{{troop.name}}Recruit" [(ngModel)]="ToDismiss" type="number" min="0" max="{{maxRecruitment(troop)}}" value="0">
+              <label for="{{troop.name}}Recruit"></label>
+              <label>/{{maxRecruitment(troop)}}</label>
+              <ng-container *ngIf="city">
+                <a class="btn colored-button" [class.disabled]="city.canRecruit(troop)"><span style="color: #ffdf81">Recruit</span></a>
+              </ng-container>
+            </div>
+          </li>
+        </ul>
+        -->
+        <!--
+        <div *ngIf="city.hasArchery">
+          <img class="small-image-60" src="http://127.0.0.1:8887/icons/archer.png">
+          <input id="archerRecruit" type="number" min="0" max="1" value="0">
+          <label for="archerRecruit"></label>
+          <label>/20</label>
+          <a class="btn colored-button"><span style="color: #ffdf81">Recruit</span></a>
+        </div>
+        <div *ngIf="city.hasBarracks">
+          <img class="small-image-60" src="http://127.0.0.1:8887/icons/pikeman.png">
+          <input id="pikemanRecruit" type="number" min="0" max="1" value="0">
+          <label for="pikemanRecruit"></label>
+          <label>/20</label>
+          <a class="btn colored-button"><span style="color: #ffdf81">Recruit</span></a>
+        </div>
+        <div *ngIf="city.hasStables">
+          <img class="small-image-60" src="http://127.0.0.1:8887/icons/cavalry.png">
+          <input id="cavalryRecruit" type="number" min="0" max="1" value="0">
+          <label for="cavalryRecruit"></label>
+          <label>/20</label>
+          <a class="btn colored-button"><span style="color: #ffdf81">Recruit</span></a>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+</div>

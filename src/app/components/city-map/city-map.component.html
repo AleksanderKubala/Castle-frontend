@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg">
+  <ng-container *ngIf="displayedCity">
+    <a class="navbar-brand">City: {{displayedCity.name}}</a>
+
+  <div class="navbar-collapse collapse">
+    <ul class=" navbar-nav mr-0">
+      <li class="dropdown " dropdown>
+        <a dropdownToggle type="button" class="dropdown-toggle">
+          <img class="navbar-image-30" src="http://127.0.0.1:8887/icons/hammer.png"/>
+        </a>
+        <ul *dropdownMenu class="dropdown-menu" role="menu">
+          <li class="nav-item" *ngFor="let main of imageService.getMainBuilding()">
+            <a class="dropdown-item" [ngClass]="{'disabled disable': displayedCity.hasMainBuilding}" (click)="selectConstruct(main)">{{main.displayName}}</a>
+          </li>
+          <li class="nav-item" *ngFor="let type of imageService.getBuildingTypes()">
+            <a class="dropdown-item" [ngClass]="{'disabled disable': !displayedCity.hasMainBuilding}" (click)="selectConstruct(type)">{{type.displayName}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class=" navbar-nav ml-0 mr-0">
+      <li>
+        <input class="navbar-image-30" type="image" src="http://127.0.0.1:8887/icons/remove.png" (click)="selectDestroy()">
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <input class="navbar-image-30" type="image" src="http://127.0.0.1:8887/icons/inspect.png" (click)="selectInspect()"/>
+      </li>
+    </ul>
+    <div class="navbar-nav ml-auto mr-auto">
+      <div *ngIf="displayedCity">
+        <ul>
+          <li class="ml-3" *ngFor="let res of imageService.getResources()" style="display: inline-block">
+              <img class="navbar-image-20" src="{{res.image}}">
+              <label class="navbar-icon-font">{{displayedCity.getStorageByResource(res)}}/{{displayedCity.getProductionByResource(res)}}</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <input class="navbar-image-30" type="image" src="http://127.0.0.1:8887/icons/world.png"
+               (click)="displayWorld()"/>
+      </li>
+    </ul>
+  </div>
+  </ng-container>
+</nav>
+
+<div class="grid-container">
+  <ng-container class="no-margin-padding" *ngIf="tiles">
+    <ng-container class="no-margin-padding" *ngFor="let tile of tiles">
+      <app-city-tile class="grid-item" [tile]="tile"></app-city-tile>
+    </ng-container>
+  </ng-container>
+</div>
+
+
+
+

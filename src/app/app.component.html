@@ -1,20 +1,107 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<html>
+<head>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand thick">CASTLE</a>
+  <div *ngIf="username">
+    <a>Welcome, {{username}}!</a>
+  </div>
+  <ng-container *ngIf="!isLoggedIn">
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav mr-5">
+        <li class="dropdown" dropdown>
+          <button dropdownToggle  class="btn colored-button dropdown-toggle" data-toggle="dropdown">Sign up<span class="caret"></span></button>
+          <ul *dropdownMenu class="dropdown-menu dropdown-lr" role="menu">
+            <li class="col-lg-12">
+              <div class="text-center">
+                <h3><b>Sign up</b></h3></div>
+              <form id="ajax-register-form">
+                <div class="form-group">
+                  <input type="text" [(ngModel)]="usernameToRegister" name="usernameRegister" id="usernameRegister" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <input type="email" [(ngModel)]="usernameEmail" name="emailRegister" id="emailRegister" class="form-control" placeholder="Email Address">
+                </div>
+                <div class="form-group">
+                  <input type="password" [(ngModel)]="passwordToRegister" name="passwordRegister" id="passwordRegister" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <input type="password" [(ngModel)]="confirmPassword" name="confirm-password" id="confirm-password" class="form-control" placeholder="Confirm Password">
+                </div>
+                <div class="form-group">
+                  <input type="text" [(ngModel)]="cityName" name="city-name" id="city-name" class="form-control" placeholder="First City Name">
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xs-6 col-xs-offset-3">
+                      <button class="colored-button btn" (click)="signUp()">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown" dropdown>
+          <button dropdownToggle class="btn colored-button">Sign in<span class="caret"></span></button>
+          <ul *dropdownMenu class="dropdown-menu dropdown-lr" role="menu">
+            <li class="col-lg-12">
+              <div class="text-center">
+                <h3><b>Sign in</b></h3></div>
+              <form id="ajax-login-form">
+                <div class="form-group">
+                  <input type="text" [(ngModel)]="usernameToLogin" name="usernameLogin" id="usernameLogin" class="form-control" placeholder="Username" value="">
+                </div>
+                <div class="form-group">
+                  <input type="password" [(ngModel)]="passwordToLogin" name="passwordLogin" id="passwordLogin" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xs-6 col-xs-offset-3">
+                      <button class="colored-button btn" (click)=signIn()>Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.nav-collapse -->
+  </ng-container>
+  <ng-container *ngIf="isLoggedIn">
+    <div class="navbar-collapse collapse">
+    <div class="navbar-nav">
+      <button class="btn colored-button" (click)="signOut()">Log Out</button>
+    </div>
+    </div>
+  </ng-container>
+</nav>
+<img class="stretch" src="../assets/background-image.png">
+<div>
+  <flash-messages></flash-messages>
+  <app-slide-panel class="center" [activePane]="pane">
+    <div firstPane>
+      <app-structure-detail></app-structure-detail>
+    </div>
+    <div secondPane>
+      <app-world-map></app-world-map>
+    </div>
+    <div thirdPane>
+      <app-city-map></app-city-map>
+    </div>
+    <div fourthPane>
+      <app-castle></app-castle>
+    </div>
+    <div fifthPane>
+      <app-login></app-login>
+    </div>
+  </app-slide-panel>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<app-update class="hide"></app-update>
+</body>
+</html>
 

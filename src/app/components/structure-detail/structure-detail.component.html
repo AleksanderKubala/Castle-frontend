@@ -1,0 +1,112 @@
+<div class="grid-container">
+  <div class="relative-container full-scale">
+    <div class="margin-left-30 margin-top-30">
+      <label>Viewed City:</label>
+      <div *ngIf="viewedTile">
+        <div *ngIf="viewedTile.city">
+          <ul>
+            <li>
+              <label>City name: {{viewedTile.city.name}}</label>
+            </li>
+            <li>
+              <label>Owner: {{viewedTile.city.owner}}</label>
+            </li>
+            <li>
+              <label>Garrison: No information (TBA)</label>
+            </li>
+            <li>
+              <label>Storage: No information (TBA)</label>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="!viewedTile.city">
+          <label>There is no city here... Just a wilderness.</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="relative-container full-scale">
+    <input class="pull-right small-image-60 margin-all-5" type="image" src="http://127.0.0.1:8887/icons/world.png"
+           (click)="displayWorld()">
+  </div>
+  <div class="relative-container full-scale">
+    <div class="margin-left-30 margin-top--150">
+      <label>Actions:</label>
+      <div *ngIf="city" class="relative-container full-scale ">
+        <div>
+          <img class="small-image-60" src="http://127.0.0.1:8887/icons/archer.png">
+          <input id="archerDelegate" [(ngModel)]="archerToDelegate" type="number" min="0"
+                 max="{{maxDelegate[archer.name]}}" value="0">
+          <label for="archerDelegate"></label>
+          <label> / </label>
+          <label>{{maxDelegate[archer.name]}}</label>
+
+          <img class="small-image-60" src="http://127.0.0.1:8887/icons/pikeman.png">
+          <input id="pikemanDelegate" [(ngModel)]="pikemanToDelegate" type="number" min="0"
+                 max="{{maxDelegate[pikeman.name]}}" value="0">
+          <label for="pikemanDelegate"></label>
+          <label> / </label>
+          <label>{{maxDelegate[pikeman.name]}}</label>
+
+          <img class="small-image-60" src="http://127.0.0.1:8887/icons/cavalry.png">
+          <input id="cavalryDelegate" [(ngModel)]="cavalryToDelegate" type="number" min="0"
+                 max="{{maxDelegate[cavalry.name]}}" value="0">
+          <label for="cavalryDelegate"></label>
+          <label> / </label>
+          <label>{{maxDelegate[cavalry.name]}}</label>
+
+        </div>
+        <div>
+          <a class="btn colored-button" [class.disabled]="!canAttack()"
+             (click)="attack(archerToDelegate, pikemanToDelegate, cavalryToDelegate)"><span style="color: #ffdf81">Attack</span></a>
+        </div>
+        <div>
+
+          <img class="small-image-60" src="http://127.0.0.1:8887/icons/settler.png">
+          <label>{{maxDelegate[settler.name]}}</label>
+
+        </div>
+        <div>
+          <a class="btn colored-button"
+             [class.disabled]="!canSettle()"><span
+            style="color: #ffdf81" (click)="settle()" >Settle</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="relative-container full-scale">
+    <div class="margin-left-30 margin-top--150">
+      <label>Last battle report:</label>
+      <div *ngIf="lastBattleReport">
+        <div style="text-align: center">
+          <label>{{battleResult()}}</label>
+          <label></label>
+        </div>
+        <div class="grid-container-1row-2col">
+          <div>
+            <label>Your losses:</label>
+            <ul>
+              <li *ngFor="let unit of lastBattleReport.attackerLosses">
+                <div>
+                  <img class="small-image-60" src="{{imageService.getUnitByName(unit.unit).image}}"/>
+                  <label>{{unit.quantity}}</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <label>Enemy losses:</label>
+            <ul>
+              <li *ngFor="let unit of lastBattleReport.targetLosses">
+                <div>
+                  <img class="small-image-60" src="{{imageService.getUnitByName(unit.unit).image}}"/>
+                  <label>{{unit.quantity}}</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
