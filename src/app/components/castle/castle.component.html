@@ -1,5 +1,5 @@
 <div class="grid-container">
-  <div class="relative-container half-short">
+  <div class="relative-container">
     <div class="margin-left-30 margin-top-30">
       <label>City Garrison:</label>
       <div *ngIf="city">
@@ -47,13 +47,13 @@
             </div>
           </li>
         </ul>
-        <div>
+        <div >
           <label>Resources:</label>
           <div>
             <ul>
               <li class="display-inline" *ngFor="let res of imageService.getResources()">
                 <img class="small-image-20" src="{{res.image}}">
-                <label class="small-font margin-right-5">{{city.getStorageByResource(res)}}/{{city.getProductionByResource(res)}}</label>
+                <label class="small-font">{{city.getStorageByResource(res)}}/{{city.getProductionByResource(res)}}</label>
               </li>
             </ul>
           </div>
@@ -62,12 +62,12 @@
     </div>
   </div>
   <div class="relative-container full-scale">
-    <input class="pull-right small-image-60 margin-all-5" type="image" src="http://127.0.0.1:8887/icons/city.png"
+    <input class="pull-right small-image-60" type="image" src="http://127.0.0.1:8887/icons/city.png"
            (click)="displayCity()">
   </div>
-  <div class="relative-container full-scale margin-top--150">
-    <div class="margin-left-30">
-      <label>Recruitment:</label>
+  <div class="relative-container full-scale">
+    <div>
+      <label class="margin-left-30">Recruitment:</label>
       <div class="relative-container full-scale">
         <ul>
           <li>
