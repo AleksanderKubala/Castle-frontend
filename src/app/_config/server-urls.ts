@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class Urls {
   baseUrl = 'http://localhost:8080/';
+  socket = 'http://localhost:8080/socket/';
   terrains = this.baseUrl + 'terraintypes/';
   buildings = this.baseUrl + 'buildingtypes/';
   structures = this.baseUrl + 'structuretypes/';

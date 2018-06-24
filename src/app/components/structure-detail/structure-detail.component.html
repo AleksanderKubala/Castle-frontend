@@ -57,6 +57,16 @@
 
         </div>
         <div>
+          <img class="small-image-20" src="{{wood.image}}">
+          <input [(ngModel)]="plunderWood" type="checkbox" checked>
+          <img class="small-image-20" src="{{stone.image}}">
+          <input [(ngModel)]="plunderStone" type="checkbox" checked>
+          <img class="small-image-20" src="{{gold.image}}">
+          <input [(ngModel)]="plunderGold" type="checkbox" checked>
+          <img class="small-image-20" src="{{food.image}}">
+          <input [(ngModel)]="plunderFood" type="checkbox" checked>
+        </div>
+        <div>
           <a class="btn colored-button" [class.disabled]="!canAttack()"
              (click)="attack(archerToDelegate, pikemanToDelegate, cavalryToDelegate)"><span style="color: #ffdf81">Attack</span></a>
         </div>
@@ -91,6 +101,13 @@
                   <img class="small-image-60" src="{{imageService.getUnitByName(unit.unit).image}}"/>
                   <label>{{unit.quantity}}</label>
                 </div>
+              </li>
+            </ul>
+            <label>Resources Plundered:</label>
+            <ul>
+              <li *ngFor="let resource of lastBattleReport.plunder">
+                <img class="small-image-20" src="{{imageService.getResourceByName(resource.resource).image}}"/>
+                <label class="small-font">{{resource.quantity}}</label>
               </li>
             </ul>
           </div>

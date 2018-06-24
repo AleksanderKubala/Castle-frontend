@@ -13,6 +13,7 @@ import {WorldTile} from '../../classes/world-tile';
 import {isNullOrUndefined} from 'util';
 import {SettlementService} from '../../services/external-services/game-services/settlement-service/settlement.service';
 import {SettlementResponse} from '../../responses/settlement-response';
+import {Resource} from '../../classes/resource';
 
 @Component({
   selector: 'app-structure-detail',
@@ -32,6 +33,11 @@ export class StructureDetailComponent implements OnInit {
   pikemanToDelegate: number;
   cavalryToDelegate: number;
 
+  plunderWood: boolean;
+  plunderStone: boolean;
+  plunderGold: boolean;
+  plunderFood: boolean;
+
   maxDelegate: { [key: string]: number };
 
   city: City;
@@ -42,9 +48,15 @@ export class StructureDetailComponent implements OnInit {
   cavalry: Unit;
   settler: Unit;
 
+  wood: Resource;
+  stone: Resource;
+  gold: Resource;
+  food: Resource;
+
   lastBattleReport: BattleResponse;
 
   unitsLoaded: boolean;
+  resourcesLoaded: boolean;
 
   constructor(
     eventService: EventService,
@@ -66,9 +78,14 @@ export class StructureDetailComponent implements OnInit {
     this.eventService.on(Event.LOAD_STRUCTURE_DETAILS, this.onLoadStructure, this);
     this.eventService.on(Event.LOGGED_OUT, this.onLogOut, this);
     this.unitsLoaded = false;
+    this.resourcesLoaded = false;
     this.archerToDelegate = 0;
     this.pikemanToDelegate = 0;
     this.cavalryToDelegate = 0;
+    this.plunderFood = true;
+    this.plunderGold = true;
+    this.plunderStone = true;
+    this.plunderWood = true;
     this.maxDelegate = {};
   }
 
@@ -76,6 +93,10 @@ export class StructureDetailComponent implements OnInit {
     if (!this.unitsLoaded) {
       this.getUnits();
       this.unitsLoaded = true;
+    }
+    if (!this.resourcesLoaded) {
+      this.getResources();
+      this.resourcesLoaded = true;
     }
     this.city = this.userInfoService.getActiveCity();
     this.maxDelegates();
@@ -99,6 +120,13 @@ export class StructureDetailComponent implements OnInit {
     this.settler = this.imageService.getUnitByName('settler');
   }
 
+  getResources() {
+    this.wood = this.imageService.getResourceByName('wood');
+    this.stone =  this.imageService.getResourceByName('stone');
+    this.food = this.imageService.getResourceByName('food');
+    this.gold = this.imageService.getResourceByName('gold');
+  }
+
   maxDelegates() {
     this.maxDelegate[this.archer.name] = this.city.getGarrisonByUnit(this.archer);
     this.maxDelegate[this.pikeman.name] = this.city.getGarrisonByUnit(this.pikeman);
@@ -116,6 +144,7 @@ export class StructureDetailComponent implements OnInit {
       pikemen = pikemen > this.maxDelegate[this.pikeman.name] ? this.maxDelegate[this.pikeman.name] : pikemen;
       cavalry = cavalry > this.maxDelegate[this.cavalry.name] ? this.maxDelegate[this.cavalry.name] : cavalry;
       const troops: Garrison[] = [];
+      const plunder: string[] = [];
       if (archers > 0) {
         troops.push(new Garrison(this.archer, archers));
       }
@@ -125,7 +154,19 @@ export class StructureDetailComponent implements OnInit {
       if (cavalry > 0) {
         troops.push(new Garrison(this.cavalry, cavalry));
       }
-      this.battleService.attack(this.city.id, this.viewedTile.city.id, troops)
+      if (this.plunderWood) {
+        plunder.push(this.wood.name);
+      }
+      if (this.plunderStone) {
+        plunder.push(this.stone.name);
+      }
+      if (this.plunderGold) {
+        plunder.push(this.gold.name);
+      }
+      if (this.plunderFood) {
+        plunder.push(this.food.name);
+      }
+      this.battleService.attack(this.city.id, this.viewedTile.city.id, troops, plunder)
         .then(response => this.showBattleResults(response));
     }
   }

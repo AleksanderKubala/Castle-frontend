@@ -19,7 +19,12 @@ export class BattleService extends AbstractExternalService {
     super(eventService, urls, http);
   }
 
-  public async attack(attackerCity: number, targetCity: number, requestTroops: Garrison[]): Promise<BattleResponse> {
+  public async attack(
+    attackerCity: number,
+    targetCity: number,
+    requestTroops: Garrison[],
+    plunder: string[]
+    ): Promise<BattleResponse> {
     const troops: GarrisonRequest[] = [];
     for (let i = 0; i < requestTroops.length; i++) {
       const troop = requestTroops[i];
@@ -27,7 +32,7 @@ export class BattleService extends AbstractExternalService {
     }
     return this.http.post<BattleResponse>(
       this.urls.attack,
-      {attackerCity, targetCity, troops} as AttackRequest
+      {attackerCity, targetCity, troops, plunder} as AttackRequest
       )
       .toPromise()
       .then()
