@@ -24,9 +24,12 @@ export class SettlementService extends AbstractExternalService {
     tileRow: number,
     tileColumn: number
   ): Promise<SettlementResponse> {
+    const body =  {world, player, city, tileRow, tileColumn} as SettlementRequest;
+    const opts = this.getHttpOptions();
     return this.http.post<SettlementResponse>(
       this.urls.settle,
-      {world, player, city, tileRow, tileColumn} as SettlementRequest
+      body,
+      opts
     )
       .toPromise()
       .then()

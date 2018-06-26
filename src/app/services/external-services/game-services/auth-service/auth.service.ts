@@ -3,9 +3,10 @@ import {EventService} from '../../../internal-services/event-service/event.servi
 import {LoginResponse} from '../../../../responses/login-response';
 import {LoginRequest} from '../../../../requests/login-request';
 import {Urls} from '../../../../_config/server-urls';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {AbstractExternalService} from '../../../abstract-external-service';
 import {RegisterRequest} from '../../../../requests/register-request';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class AuthService extends AbstractExternalService {

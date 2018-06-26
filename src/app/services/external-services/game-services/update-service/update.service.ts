@@ -22,6 +22,7 @@ export class UpdateService extends AbstractExternalService {
     protected http: HttpClient
   ) {
     super(eventService, urls, http);
+    /*
     const ws = new SockJS(urls.socket);
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, function() {
@@ -31,12 +32,13 @@ export class UpdateService extends AbstractExternalService {
         }
       });
     });
+    */
   }
-
+  /*
   private update(update: CityResponse[]) {
     alert('Received update message! Hooray!');
   }
-
+  */
 /*
   private socket;
 

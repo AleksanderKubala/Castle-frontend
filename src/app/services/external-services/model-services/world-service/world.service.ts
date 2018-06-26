@@ -17,7 +17,8 @@ export class WorldService extends AbstractExternalService {
   }
 
   public async getWorld(worldNumber: number): Promise<WorldResponse> {
-    return this.http.get<WorldResponse>(this.urls.world + worldNumber)
+    const opts = this.getHttpOptions();
+    return this.http.get<WorldResponse>(this.urls.world + '/' + worldNumber, opts)
       .toPromise()
       .then()
       .catch(error => this.handleError(error));

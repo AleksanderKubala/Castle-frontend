@@ -30,9 +30,12 @@ export class BattleService extends AbstractExternalService {
       const troop = requestTroops[i];
       troops.push(new GarrisonRequest(troop.unit.name, troop.quantity));
     }
+    const body = {attackerCity, targetCity, troops, plunder} as AttackRequest;
+    const opts = this.getHttpOptions();
     return this.http.post<BattleResponse>(
       this.urls.attack,
-      {attackerCity, targetCity, troops, plunder} as AttackRequest
+      body,
+      opts
       )
       .toPromise()
       .then()

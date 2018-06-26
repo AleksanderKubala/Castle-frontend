@@ -155,11 +155,9 @@ export class AppComponent implements OnInit {
       this.usernameToLogin,
       hash
     ).then(response => {
+      localStorage.setItem('token', response.token);
       this.eventService.emit(Event.LOGGED_IN, response.username, response.world.id);
-    })
-      .catch(response => {
-        this.flashService.show('Invalid username or password.', { cssClass: 'alert-danger', timeout: 5000 });
-      });
+    });
   }
 
   signOut() {
