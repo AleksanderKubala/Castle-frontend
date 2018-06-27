@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class Urls {
-  baseUrl = 'http://localhost:8080';
-  socket = 'ws://localhost:8080/updatesocket';
+  baseUrl = 'https://castle-backend.herokuapp.com';
+  socket = 'ws://castle-backend.herokuapp.com/updatesocket';
   updateSubscription = '/update';
   terrains = this.baseUrl + '/terraintypes';
   buildings = this.baseUrl + '/buildingtypes';
