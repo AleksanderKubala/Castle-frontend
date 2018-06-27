@@ -26,29 +26,29 @@
     </div>
   </div>
   <div class="relative-container full-scale">
-    <input class="pull-right small-image-60 margin-all-5" type="image" src="http://127.0.0.1:8887/icons/world.png"
+    <input class="pull-right small-image-60 margin-all-5" type="image" src="assets/world.png"
            (click)="displayWorld()">
   </div>
   <div class="relative-container full-scale">
-    <div class="margin-left-30 margin-top--150">
+    <div class="margin-left-30 margin-bottom-30">
       <label>Actions:</label>
       <div *ngIf="city" class="relative-container full-scale ">
         <div>
-          <img class="small-image-60" src="http://127.0.0.1:8887/icons/archer.png">
+          <img class="small-image-60" src="assets/archer.png">
           <input id="archerDelegate" [(ngModel)]="archerToDelegate" type="number" min="0"
                  max="{{maxDelegate[archer.name]}}" value="0">
           <label for="archerDelegate"></label>
           <label> / </label>
           <label>{{maxDelegate[archer.name]}}</label>
 
-          <img class="small-image-60" src="http://127.0.0.1:8887/icons/pikeman.png">
+          <img class="small-image-60" src="assets/pikeman.png">
           <input id="pikemanDelegate" [(ngModel)]="pikemanToDelegate" type="number" min="0"
                  max="{{maxDelegate[pikeman.name]}}" value="0">
           <label for="pikemanDelegate"></label>
           <label> / </label>
           <label>{{maxDelegate[pikeman.name]}}</label>
 
-          <img class="small-image-60" src="http://127.0.0.1:8887/icons/cavalry.png">
+          <img class="small-image-60" src="assets/cavalry.png">
           <input id="cavalryDelegate" [(ngModel)]="cavalryToDelegate" type="number" min="0"
                  max="{{maxDelegate[cavalry.name]}}" value="0">
           <label for="cavalryDelegate"></label>
@@ -57,12 +57,22 @@
 
         </div>
         <div>
+          <img class="small-image-20" src="{{wood.image}}">
+          <input [(ngModel)]="plunderWood" type="checkbox" checked>
+          <img class="small-image-20" src="{{stone.image}}">
+          <input [(ngModel)]="plunderStone" type="checkbox" checked>
+          <img class="small-image-20" src="{{gold.image}}">
+          <input [(ngModel)]="plunderGold" type="checkbox" checked>
+          <img class="small-image-20" src="{{food.image}}">
+          <input [(ngModel)]="plunderFood" type="checkbox" checked>
+        </div>
+        <div>
           <a class="btn colored-button" [class.disabled]="!canAttack()"
              (click)="attack(archerToDelegate, pikemanToDelegate, cavalryToDelegate)"><span style="color: #ffdf81">Attack</span></a>
         </div>
         <div>
 
-          <img class="small-image-60" src="http://127.0.0.1:8887/icons/settler.png">
+          <img class="small-image-60" src="assets/settler.png">
           <label>{{maxDelegate[settler.name]}}</label>
 
         </div>
@@ -75,7 +85,7 @@
     </div>
   </div>
   <div class="relative-container full-scale">
-    <div class="margin-left-30 margin-top--150">
+    <div class="margin-left-30">
       <label>Last battle report:</label>
       <div *ngIf="lastBattleReport">
         <div style="text-align: center">
@@ -91,6 +101,13 @@
                   <img class="small-image-60" src="{{imageService.getUnitByName(unit.unit).image}}"/>
                   <label>{{unit.quantity}}</label>
                 </div>
+              </li>
+            </ul>
+            <label>Resources Plundered:</label>
+            <ul>
+              <li *ngFor="let resource of lastBattleReport.plunder">
+                <img class="small-image-20" src="{{imageService.getResourceByName(resource.resource).image}}"/>
+                <label class="small-font">{{resource.quantity}}</label>
               </li>
             </ul>
           </div>

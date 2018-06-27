@@ -1,8 +1,10 @@
 import {AbstractService} from './abstract-service';
 import {Urls} from '../_config/server-urls';
 import {EventService} from './internal-services/event-service/event.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 import {Event} from '../_config/event-config';
+import {text} from '@angular/core/src/render3/instructions';
 
 export abstract class AbstractExternalService extends  AbstractService {
 
@@ -34,5 +36,14 @@ export abstract class AbstractExternalService extends  AbstractService {
 
       return opening + ' Status: ' + error.status + ' ' + error.statusText + '. ' + message;
     }
+  }
+
+  protected getHttpOptions() {
+    return {
+      headers: new HttpHeaders({
+        'Authorization': localStorage.getItem('token')
+      }),
+      responseType: 'json' as 'json'
+    };
   }
 }

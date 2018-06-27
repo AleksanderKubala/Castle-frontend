@@ -5,12 +5,12 @@
 .center {
   position: absolute;
   margin: auto;
-  top: 0;
+  top: 25px;
   right: 0;
   bottom: 0;
   left: 0;
   width: 75%;
-  height: 75%;
+  height: 85%;
 }
 
 img.stretch {
@@ -20,7 +20,7 @@ img.stretch {
 
 div {
   font: 20px sans-serif;
-  height: 100%;
+  //height: 100%;
 
   display: flex;
   align-items: center;

@@ -8,6 +8,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 // import {TextEncoder, TextDecoder} from '../../node_modules/text-encoding';
 import sha256 from '../../node_modules/crypto-js/sha256';
 import Hex from '../../node_modules/crypto-js/enc-Hex';
+import {UpdateService} from './services/external-services/game-services/update-service/update.service';
 
 export type PaneType = 'castle' | 'login' | 'city' | 'world' | 'structure';
 
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
   userInfoService: UserInfoService;
   authService: AuthService;
   flashService: FlashMessagesService;
+  updateService: UpdateService;
 
   usernameToRegister: string;
   usernameEmail: string;
@@ -47,12 +49,14 @@ export class AppComponent implements OnInit {
     eventService: EventService,
     userInfoService: UserInfoService,
     authService: AuthService,
-    flashService: FlashMessagesService
+    flashService: FlashMessagesService,
+    updateService: UpdateService
     ) {
     this.eventService = eventService;
     this.userInfoService = userInfoService;
     this.authService = authService;
     this.flashService = flashService;
+    this.updateService = updateService;
     this.errorMessage = '';
   }
 
@@ -151,11 +155,9 @@ export class AppComponent implements OnInit {
       this.usernameToLogin,
       hash
     ).then(response => {
+      localStorage.setItem('token', response.token);
       this.eventService.emit(Event.LOGGED_IN, response.username, response.world.id);
-    })
-      .catch(response => {
-        this.flashService.show('Invalid username or password.', { cssClass: 'alert-danger', timeout: 5000 });
-      });
+    });
   }
 
   signOut() {

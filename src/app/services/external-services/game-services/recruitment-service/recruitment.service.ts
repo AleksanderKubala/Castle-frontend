@@ -18,9 +18,12 @@ export class RecruitmentService extends AbstractExternalService {
   }
 
   public async recruit(cityId: number, unitName: string, quantity: number): Promise<CityResponse> {
+    const body = {unitName, quantity} as GarrisonRequest;
+    const opts = this.getHttpOptions();
     return this.http.post<CityResponse>(
-      this.urls.recruitUnit + cityId,
-      {unitName, quantity} as GarrisonRequest
+      this.urls.recruitUnit + '/' + cityId,
+      body,
+      opts
     )
       .toPromise()
       .then()
@@ -28,9 +31,12 @@ export class RecruitmentService extends AbstractExternalService {
   }
 
   public async dismiss(cityId: number, unitName: string, quantity: number): Promise<CityResponse> {
+    const body = {unitName, quantity} as GarrisonRequest;
+    const opts = this.getHttpOptions();
     return this.http.post<CityResponse>(
-      this.urls.dismissUnit + cityId,
-      {unitName, quantity} as GarrisonRequest
+      this.urls.dismissUnit + '/' + cityId,
+      body,
+      opts
     )
       .toPromise()
       .then()

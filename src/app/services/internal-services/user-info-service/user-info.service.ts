@@ -8,6 +8,7 @@ import {CityStorage} from '../../../classes/city-storage';
 import {Production} from '../../../classes/production';
 import {ImageMapperService} from '../image-mapper-service/image-mapper.service';
 import {CityResponse} from '../../../responses/element-responses/city-response';
+import {UpdateResponse} from '../../../responses/update-response';
 
 @Injectable()
 export class UserInfoService extends AbstractService {
@@ -31,6 +32,7 @@ export class UserInfoService extends AbstractService {
     this.eventService.on(Event.CHANGE_ACTIVE_CITY, this.onChangeActiveCity, this);
     this.eventService.on(Event.CHANGE_AND_DISPLAY_ACTIVE_CITY, this.onChangeAndDisplayActiveCity, this);
     this.eventService.on(Event.LOGGED_OUT, this.onLogOut, this);
+    this.eventService.on(Event.STORAGE_UPDATE, this.onStorageUpdate, this);
   }
 
   public getUsername() {
@@ -126,6 +128,18 @@ export class UserInfoService extends AbstractService {
       }
     }
     return found;
+  }
+
+  private onStorageUpdate(update: UpdateResponse) {
+     const updates = update[0].cities;
+    for (let i = 0; i < this.playerCities.length; i++) {
+      const playerCity = this.playerCities[i];
+      for (let j = 0; j < updates.length; j++) {
+        if (updates[j].id === playerCity.id) {
+          playerCity.updateCity(updates[j]);
+        }
+      }
+    }
   }
 
 

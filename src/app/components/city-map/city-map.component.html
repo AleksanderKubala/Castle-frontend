@@ -6,7 +6,7 @@
     <ul class=" navbar-nav mr-0">
       <li class="dropdown " dropdown>
         <a dropdownToggle type="button" class="dropdown-toggle">
-          <img class="navbar-image-30" src="http://127.0.0.1:8887/icons/hammer.png"/>
+          <img class="navbar-image-30" src="assets/hammer.png"/>
         </a>
         <ul *dropdownMenu class="dropdown-menu" role="menu">
           <li class="nav-item" *ngFor="let main of imageService.getMainBuilding()">
@@ -20,12 +20,12 @@
     </ul>
     <ul class=" navbar-nav ml-0 mr-0">
       <li>
-        <input class="navbar-image-30" type="image" src="http://127.0.0.1:8887/icons/remove.png" (click)="selectDestroy()">
+        <input class="navbar-image-30" type="image" src="assets/remove.png" (click)="selectDestroy()">
       </li>
     </ul>
     <ul>
       <li>
-        <input class="navbar-image-30" type="image" src="http://127.0.0.1:8887/icons/inspect.png" (click)="selectInspect()"/>
+        <input class="navbar-image-30" type="image" src="assets/inspect.png" (click)="selectInspect()"/>
       </li>
     </ul>
     <div class="navbar-nav ml-auto mr-auto">
@@ -40,7 +40,7 @@
     </div>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <input class="navbar-image-30" type="image" src="http://127.0.0.1:8887/icons/world.png"
+        <input class="navbar-image-30" type="image" src="assets/world.png"
                (click)="displayWorld()"/>
       </li>
     </ul>

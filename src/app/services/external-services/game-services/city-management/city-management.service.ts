@@ -20,7 +20,8 @@ export class CityManagementService extends AbstractExternalService {
 
   public async postConstructtion(cityId: number, row: number, column: number, buildingType: string): Promise<CityResponse> {
     const request: ConstructionRequest = new ConstructionRequest(cityId, row, column, buildingType);
-    return this.http.post<CityResponse>(this.urls.constructBuilding, request)
+    const opts = this.getHttpOptions();
+    return this.http.post<CityResponse>(this.urls.constructBuilding, request, opts)
       .toPromise()
       .then()
       .catch(error => this.handleError(error));
@@ -28,7 +29,8 @@ export class CityManagementService extends AbstractExternalService {
 
   public async postDestroy(cityId: number, row: number, column: number): Promise<CityResponse> {
     const request: ConstructionRequest = new ConstructionRequest(cityId, row, column, null);
-    return this.http.post<CityResponse>(this.urls.destroyBuilding, request)
+    const opts = this.getHttpOptions();
+    return this.http.post<CityResponse>(this.urls.destroyBuilding, request, opts)
       .toPromise()
       .then()
       .catch(error => this.handleError(error));

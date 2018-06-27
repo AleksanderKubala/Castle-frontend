@@ -47,7 +47,7 @@ export class WorldMapComponent implements OnInit {
 
   ngOnInit() {
     this.eventService.on(Event.LOAD_WORLD, this.onLoadWorld, this);
-    this.eventService.on(Event.STORAGE_UPDATE, this.onStorageUpdate, this);
+   //  this.eventService.on(Event.STORAGE_UPDATE, this.onStorageUpdate, this);
     this.eventService.on(Event.ACTIVE_CITY_CHANGED, this.onActiveCityChanged, this);
     this.eventService.on(Event.NEW_CITY_BUILT, this.onNewCityBuilt, this);
     this.eventService.on(Event.LOGGED_OUT, this.onLogOut, this);
@@ -107,6 +107,7 @@ export class WorldMapComponent implements OnInit {
     this.eventService.emit(Event.DISPLAY_CITY);
   }
 
+  /*
   onStorageUpdate(update: CityResponse[]) {
     if (!isNullOrUndefined(this.cities)) {
       for (let i = 0; i < this.cities.length; i++) {
@@ -118,6 +119,7 @@ export class WorldMapComponent implements OnInit {
       }
     }
   }
+*/
 
   onActiveCityChanged(city: City) {
 
