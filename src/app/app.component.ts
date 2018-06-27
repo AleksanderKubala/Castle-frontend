@@ -4,8 +4,8 @@ import {Event} from './_config/event-config';
 import {UserInfoService} from './services/internal-services/user-info-service/user-info.service';
 import {AuthService} from './services/external-services/game-services/auth-service/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
-import sha256 from '/node_modules/crypto-js/sha256';
-import Hex from '/crypto-js/enc-Hex';
+import sha256 from 'crypto';
+import Hex from 'crypto';
 import {UpdateService} from './services/external-services/game-services/update-service/update.service';
 
 export type PaneType = 'castle' | 'login' | 'city' | 'world' | 'structure';
