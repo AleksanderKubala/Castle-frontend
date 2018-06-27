@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="relative-container full-scale">
-    <input class="pull-right small-image-60 margin-all-5" type="image" src="http://127.0.0.1:8887/icons/world.png"
+    <input class="pull-right small-image-60 margin-all-5" type="image" src="assets/world.png"
            (click)="displayWorld()">
   </div>
   <div class="relative-container full-scale">
@@ -34,21 +34,21 @@
       <label>Actions:</label>
       <div *ngIf="city" class="relative-container full-scale ">
         <div>
-          <img class="small-image-60" src="http://127.0.0.1:8887/icons/archer.png">
+          <img class="small-image-60" src="assets/archer.png">
           <input id="archerDelegate" [(ngModel)]="archerToDelegate" type="number" min="0"
                  max="{{maxDelegate[archer.name]}}" value="0">
           <label for="archerDelegate"></label>
           <label> / </label>
           <label>{{maxDelegate[archer.name]}}</label>
 
-          <img class="small-image-60" src="http://127.0.0.1:8887/icons/pikeman.png">
+          <img class="small-image-60" src="assets/pikeman.png">
           <input id="pikemanDelegate" [(ngModel)]="pikemanToDelegate" type="number" min="0"
                  max="{{maxDelegate[pikeman.name]}}" value="0">
           <label for="pikemanDelegate"></label>
           <label> / </label>
           <label>{{maxDelegate[pikeman.name]}}</label>
 
-          <img class="small-image-60" src="http://127.0.0.1:8887/icons/cavalry.png">
+          <img class="small-image-60" src="assets/cavalry.png">
           <input id="cavalryDelegate" [(ngModel)]="cavalryToDelegate" type="number" min="0"
                  max="{{maxDelegate[cavalry.name]}}" value="0">
           <label for="cavalryDelegate"></label>
@@ -72,7 +72,7 @@
         </div>
         <div>
 
-          <img class="small-image-60" src="http://127.0.0.1:8887/icons/settler.png">
+          <img class="small-image-60" src="assets/settler.png">
           <label>{{maxDelegate[settler.name]}}</label>
 
         </div>

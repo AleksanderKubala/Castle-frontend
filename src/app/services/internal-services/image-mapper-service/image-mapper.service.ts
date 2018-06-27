@@ -5,7 +5,7 @@ import {StructureTypeService} from '../../external-services/model-services/struc
 import {AbstractService} from '../../abstract-service';
 import {EventService} from '../event-service/event.service';
 import {TileDetails} from '../../../classes/tile-details';
-import {EXT, ICON, IMG_SOURCE, PLAYER, ENEMY} from '../../../_config/img-config';
+import {EXT, IMG_SOURCE, PLAYER, ENEMY} from '../../../_config/img-config';
 import {isNullOrUndefined} from 'util';
 import {BuildingType} from '../../../classes/building-type';
 import {TerrainType} from '../../../classes/terrain-type';
@@ -77,7 +77,7 @@ export class ImageMapperService extends AbstractService {
   }
 
   public createIconString(icon: string) {
-    return IMG_SOURCE + ICON + icon + EXT;
+    return IMG_SOURCE + icon + EXT;
   }
 
   private createKey(terrain: string, entity: string) {

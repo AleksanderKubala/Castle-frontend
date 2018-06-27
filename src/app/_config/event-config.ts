@@ -15,5 +15,5 @@ export enum Event {
   ACTIVE_CITY_CHANGED = 'ActiveCityChanged',
   CITY_TILE_SELECTED = 'CityTileSelected',
   STORAGE_UPDATE = 'StorageUpdate',
-  NEW_CITY_BUILT = 'NewCityBuilt'
+  NEW_CITY_BUILT = 'NewCityBuilt',
 }

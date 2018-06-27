@@ -6,7 +6,7 @@
         <ul class="list-inline">
           <li>
             <div>
-              <img class="small-image-60" src="http://127.0.0.1:8887/icons/archer.png">
+              <img class="small-image-60" src="assets/archer.png">
               <label>{{maxDismiss[archer.name]}}</label>
               <label> / </label>
               <input id="archerDismiss" [(ngModel)]="archerToDismiss" type="number" min="0"
@@ -16,7 +16,7 @@
                  (click)="dismiss(archer, archerToDismiss)"><span style="color: #ffdf81">Dismiss</span></a>
             </div>
             <div>
-              <img class="small-image-60" src="http://127.0.0.1:8887/icons/pikeman.png">
+              <img class="small-image-60" src="assets/pikeman.png">
               <label>{{maxDismiss[pikeman.name]}}</label>
               <label> / </label>
               <input id="pikemanDismiss" [(ngModel)]="pikemanToDismiss" type="number" min="0"
@@ -26,7 +26,7 @@
                  (click)="dismiss(pikeman, pikemanToDismiss)"><span style="color: #ffdf81">Dismiss</span></a>
             </div>
             <div>
-              <img class="small-image-60" src="http://127.0.0.1:8887/icons/cavalry.png">
+              <img class="small-image-60" src="assets/cavalry.png">
               <label>{{maxDismiss[cavalry.name]}}</label>
               <label> / </label>
               <input id="cavalryDismiss" [(ngModel)]="cavalryToDismiss" type="number" min="0"
@@ -36,7 +36,7 @@
                  (click)="dismiss(cavalry, cavalryToDismiss)"><span style="color: #ffdf81">Dismiss</span></a>
             </div>
             <div>
-              <img class="small-image-60" src="http://127.0.0.1:8887/icons/settler.png">
+              <img class="small-image-60" src="assets/settler.png">
               <label>{{maxDismiss[settler.name]}}</label>
               <label> / </label>
               <input id="settlerDismiss" [(ngModel)]="settlerToDismiss" type="number" min="0"
@@ -62,7 +62,7 @@
     </div>
   </div>
   <div class="relative-container full-scale">
-    <input class="pull-right small-image-60" type="image" src="http://127.0.0.1:8887/icons/city.png"
+    <input class="pull-right small-image-60" type="image" src="assets/city.png"
            (click)="displayCity()">
   </div>
   <div class="relative-container full-scale">
@@ -72,7 +72,7 @@
         <ul>
           <li>
             <div *ngIf="city" class="display-inline">
-              <img class="small-image-60" src="http://127.0.0.1:8887/icons/archer.png">
+              <img class="small-image-60" src="assets/archer.png">
               <input id="archerRecruit" [(ngModel)]="archerToRecruit" type="number" min="0"
                      max="{{maxRecruit[archer.name]}}" value="0">
               <label for="archerRecruit"></label>
@@ -93,7 +93,7 @@
           </li>
           <li>
             <div *ngIf="city" class="display-inline">
-              <img class="small-image-60" src="http://127.0.0.1:8887/icons/pikeman.png">
+              <img class="small-image-60" src="assets/pikeman.png">
               <input id="pikemanRecruit" [(ngModel)]="pikemanToRecruit" type="number" min="0"
                      max="{{maxRecruit[pikeman.name]}}" value="0">
               <label for="pikemanRecruit"></label>
@@ -114,7 +114,7 @@
           </li>
           <li>
             <div *ngIf="city" class="display-inline">
-              <img class="small-image-60" src="http://127.0.0.1:8887/icons/cavalry.png">
+              <img class="small-image-60" src="assets/cavalry.png">
               <input id="cavalryRecruit" [(ngModel)]="cavalryToRecruit" type="number" min="0"
                      max="{{maxRecruit[cavalry.name]}}" value="0">
               <label for="cavalryRecruit"></label>
@@ -135,7 +135,7 @@
           </li>
           <li>
             <div *ngIf="city" class="display-inline">
-              <img class="small-image-60" src="http://127.0.0.1:8887/icons/settler.png">
+              <img class="small-image-60" src="assets/settler.png">
               <input id="settlerRecruit" [(ngModel)]="settlerToRecruit" type="number" min="0"
                      max="{{maxRecruit[settler.name]}}" value="0">
               <label for="settlerRecruit"></label>
